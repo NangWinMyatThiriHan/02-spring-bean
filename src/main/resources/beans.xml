@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+   	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean class="com.jdc.spring.beans.MyService"></bean>
+    
+    <bean id="static" class="com.jdc.spring.beans.StaticFactoryMethod"
+    	  factory-method="getApplicationName"></bean>
+    	  
+   	<bean id="instance" class="com.jdc.spring.beans.InstanceFactoryMethod"></bean>    	
+   	<bean factory-bean="instance" factory-method="names"></bean>
+   	
+   	<bean id="service1" class="com.jdc.spring.beans.MyServiceWithConstructorArgs">
+    	<constructor-arg index="0" value="Message From value1."></constructor-arg>
+    	<constructor-arg index="1" value="Message From value2."></constructor-arg>
+    </bean>
+    
+    <bean id="service2" name="otherservice1, otherservice2" class="com.jdc.spring.beans.MyServiceWithConstructorArgs">
+    	<constructor-arg index="0" ref="static"></constructor-arg>
+    	<constructor-arg index="1" ref="static"></constructor-arg>
+    </bean>   	
+
+</beans>
